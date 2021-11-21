@@ -9,9 +9,14 @@ import SwiftUI
 
 @main
 struct TextListApp: App {
+    
+    @State private var cards = Card.data
+    
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            NavigationView {
+                ContentView(cards: $cards)
+            }
         }
     }
 }
