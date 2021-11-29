@@ -9,50 +9,71 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @Binding var cards: [Card]
-    @State private var isPresented = false
-    @State private var newCardData = Card.Data()
+    @Environment(\.managedObjectContext) var managedObjectContext
+    
+    @FetchRequest(
+        entity: Card.entity(),
+        sortDescriptors: [
+            NSSortDescriptor(keyPath: \Card.title, ascending: true)
+        ]
+    ) var cards: FetchedResults<Card>
+    
+    @State var isPresented = false
     
     var body: some View {
-        List {
-            ForEach(cards) { card in
-                NavigationLink(destination: DetailView(card: binding(for: card))) {
-                    CardView(card: card)
+        NavigationView {
+            List {
+                ForEach(cards, id: \.title) {
+                    CardView(card: $0)
+                }
+                .onDelete(perform: deleteMovie)
+            }
+            .sheet(isPresented: $isPresented) {
+                EditView { title, text in
+                    self.addCard(title: title, text: text)
+                    self.isPresented = false
                 }
             }
-        }
-        .navigationTitle("Cards")
-        .navigationBarItems(trailing: Button(action: {
-            isPresented = true
-        }) {
-            Image(systemName: "plus")
-        })
-        .sheet(isPresented: $isPresented) {
-            NavigationView {
-                EditView(cardData: $newCardData)
-                    .navigationBarItems(leading: Button("Dismiss") {
-                        isPresented = false
-                    }, trailing: Button("Add") {
-                        let newCard = Card(title: newCardData.title, text: newCardData.text)
-                        cards.append(newCard)
-                        isPresented = false
-                    })
-            }
+            .navigationTitle("Cards")
+            .navigationBarItems(trailing: Button(action: {
+                self.isPresented.toggle()
+            }) {
+                Image(systemName: "plus")
+            })
         }
     }
     
-    private func binding(for card: Card) -> Binding<Card> {
-        guard let cardIndex = cards.firstIndex(where: { $0.id == card.id }) else {
-            fatalError("Cant")
+    func deleteMovie(at offset: IndexSet) {
+        offset.forEach { index in
+            let card = self.cards[index]
+            self.managedObjectContext.delete(card)
         }
-        return $cards[cardIndex]
+        
+        saveContext()
+    }
+    
+    func addCard(title: String, text: String) {
+        let newCard = Card(context: managedObjectContext)
+        
+        newCard.title = title
+        newCard.text = text
+        
+        saveContext()
+    }
+    
+    func saveContext() {
+        do {
+            try managedObjectContext.save()
+        } catch {
+            print("Error saving managed object context: \(error)")
+        }
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ContentView(cards: .constant(Card.data))
+            ContentView()
         }
     }
 }

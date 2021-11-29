@@ -10,13 +10,17 @@ import SwiftUI
 @main
 struct TextListApp: App {
     
-    @State private var cards = Card.data
+    @Environment(\.scenePhase) var scenePhase
+    
+    let persistenceController = PersistenceController.shared
     
     var body: some Scene {
         WindowGroup {
-            NavigationView {
-                ContentView(cards: $cards)
-            }
+            ContentView()
+                .environment(\.managedObjectContext, persistenceController.container.viewContext)
+        }
+        .onChange(of: scenePhase) { _ in
+            persistenceController.save()
         }
     }
 }

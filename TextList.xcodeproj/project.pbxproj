@@ -11,10 +11,10 @@
 		8929275F27201D63004C9A0C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8929275E27201D63004C9A0C /* ContentView.swift */; };
 		8929276127201D64004C9A0C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8929276027201D64004C9A0C /* Assets.xcassets */; };
 		8929276427201D64004C9A0C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8929276327201D64004C9A0C /* Preview Assets.xcassets */; };
-		8929276B27201DA8004C9A0C /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8929276A27201DA8004C9A0C /* Model.swift */; };
 		8929276D27201E45004C9A0C /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8929276C27201E45004C9A0C /* CardView.swift */; };
-		8929276F272021DB004C9A0C /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8929276E272021DB004C9A0C /* DetailView.swift */; };
 		89292771272023F0004C9A0C /* EditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89292770272023EF004C9A0C /* EditView.swift */; };
+		89B25DDE274A5D1E00B686C5 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 89B25DDC274A5D1E00B686C5 /* Model.xcdatamodeld */; };
+		89B25DE0274A5DA800B686C5 /* PersistenceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B25DDF274A5DA800B686C5 /* PersistenceController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,10 +23,10 @@
 		8929275E27201D63004C9A0C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		8929276027201D64004C9A0C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8929276327201D64004C9A0C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		8929276A27201DA8004C9A0C /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		8929276C27201E45004C9A0C /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		8929276E272021DB004C9A0C /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
 		89292770272023EF004C9A0C /* EditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditView.swift; sourceTree = "<group>"; };
+		89B25DDD274A5D1E00B686C5 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		89B25DDF274A5DA800B686C5 /* PersistenceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,8 +61,8 @@
 			children = (
 				8929275C27201D63004C9A0C /* TextListApp.swift */,
 				8929275E27201D63004C9A0C /* ContentView.swift */,
-				8929276E272021DB004C9A0C /* DetailView.swift */,
-				8929276A27201DA8004C9A0C /* Model.swift */,
+				89B25DDF274A5DA800B686C5 /* PersistenceController.swift */,
+				89B25DDC274A5D1E00B686C5 /* Model.xcdatamodeld */,
 				89292770272023EF004C9A0C /* EditView.swift */,
 				8929276C27201E45004C9A0C /* CardView.swift */,
 				8929276027201D64004C9A0C /* Assets.xcassets */,
@@ -153,12 +153,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8929276B27201DA8004C9A0C /* Model.swift in Sources */,
 				8929275F27201D63004C9A0C /* ContentView.swift in Sources */,
 				89292771272023F0004C9A0C /* EditView.swift in Sources */,
+				89B25DDE274A5D1E00B686C5 /* Model.xcdatamodeld in Sources */,
 				8929276D27201E45004C9A0C /* CardView.swift in Sources */,
-				8929276F272021DB004C9A0C /* DetailView.swift in Sources */,
 				8929275D27201D63004C9A0C /* TextListApp.swift in Sources */,
+				89B25DE0274A5DA800B686C5 /* PersistenceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,6 +365,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		89B25DDC274A5D1E00B686C5 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				89B25DDD274A5D1E00B686C5 /* Model.xcdatamodel */,
+			);
+			currentVersion = 89B25DDD274A5D1E00B686C5 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 8929275127201D62004C9A0C /* Project object */;
 }
