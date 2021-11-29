@@ -10,19 +10,13 @@ import SwiftUI
 struct CardView: View {
     
     let card: Card
-    
+
     var body: some View {
         HStack {
-            Text(card.title)
+            card.title.map(Text.init)
                 .font(.title)
             Spacer()
         }
         .padding()
-    }
-}
-
-struct CardView_Previews: PreviewProvider {
-    static var previews: some View {
-        CardView(card: Card.data[0])
     }
 }

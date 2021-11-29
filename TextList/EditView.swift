@@ -9,22 +9,40 @@ import SwiftUI
 
 struct EditView: View {
     
-    @Binding var cardData: Card.Data
+    static let defaultCardTitle = "Card"
+    static let defaultCardText = "Text"
+    
+    @State private var title = ""
+    @State private var text = ""
+    
+    let onComplete: (String, String) -> Void
     
     var body: some View {
-        List {
-            Section(header: Text("Title")) {
-                TextField("Title", text: $cardData.title)
+        NavigationView {
+            Form {
+                Section(header: Text("Title")) {
+                    TextField("Title", text: $title)
+                }
+                Section(header: Text("Text")) {
+                    TextEditor(text: $text)
+                        .lineSpacing(16)
+                        .autocapitalization(.words)
+                        .disableAutocorrection(true)
+                }
+                
+                Section {
+                    Button(action: addMoveAction) {
+                        Text("Add Card")
+                    }
+                }
             }
-            Section(header: Text("Text")) {
-                TextField("Text", text: $cardData.text)
-            }
+            .navigationBarTitle(Text("Add Card"), displayMode: .inline)
         }
     }
-}
-
-struct EditView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditView(cardData: .constant(Card.data[0].data))
+    private func addMoveAction() {
+        onComplete(
+            title.isEmpty ? EditView.defaultCardTitle : title,
+            text.isEmpty ? EditView.defaultCardText : text
+        )
     }
 }
